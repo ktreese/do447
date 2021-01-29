@@ -1,0 +1,35 @@
+---
+- name: Filter Testing
+  hosts: servera.lab.example.com
+  vars:
+    NFL:
+      - Seahawks
+      - Gaints
+      - Packers
+      - Falcons
+    address: |
+      1050 Crown Pointe Pkwy,
+      10th floor,
+      Atlanta,
+      GA 30338
+      United States
+
+
+  tasks:
+    - name: Display long string part 1
+      debug:
+        msg: |
+             1050 Crown Pointe Pkwy,
+             10th floor,
+             Atlanta,
+             GA 30338
+             United States
+
+    - name: Display long string part 2
+      debug: 
+        var=address
+             
+    - name: Confirm that the second list element is "Gaints"
+      assert:
+        that:
+          - NFL[1] == 'Gaints'
