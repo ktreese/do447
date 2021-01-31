@@ -1,0 +1,11 @@
+---
+- name: Network Facts
+  hosts: servera.lab.example.com
+  tasks:
+
+    - name: collect only network related facts
+      setup:
+        gather_subset:
+      register: nwfacts
+    - name: Display network facts
+      debug: var=nwfacts

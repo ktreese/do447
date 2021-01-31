@@ -1,0 +1,15 @@
+---
+- name: Network Facts
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+  tasks:
+
+    - name: IPAddr example
+      debug:
+        msg: "{{ lookup('dig', ansible_facts['hostname'] ) | ipaddr('private') }}"
+
+    - name: Dig example
+      debug:
+        msg: "{{ lookup('dig', 'example.com.') }}"
+
