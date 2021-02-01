@@ -1,0 +1,33 @@
+- name: Install and Configure a Web Server
+  hosts: datacenter1
+  vars:
+    packages_name:
+      - httpd
+      - mod_ssl
+    site_path: /var/www/html
+    site_name: "DO447-variables"
+
+  tasks:
+
+  - name: httpd installation
+    yum:
+      name: "{{ packages_name }}"
+      state: present
+
+  - name: Index page for site is installed
+    template:
+      src: 'templates/index.html.j2'
+      dest: '{{ site_path }}/index.html'
+
+  - name: Firewall rule is enabled
+    firewalld:
+      service: http
+      state: enabled
+      permanent: yes
+      immediate: yes
+
+  - name: Web service is started
+    service:
+      name: httpd
+      state: started
+      enabled: yes
