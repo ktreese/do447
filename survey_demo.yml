@@ -1,5 +1,5 @@
 - name: Install and Configure a Web Server
-  hosts: datacenter1
+  hosts: all
   vars:
     packages_name:
       - httpd
