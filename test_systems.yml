@@ -1,6 +1,7 @@
 ---
 - name: Testing of New project with credentials and inventory
   hosts: all
+  gather_facts: yes
   tasks:
     - name: Check connectivity
       ping:
