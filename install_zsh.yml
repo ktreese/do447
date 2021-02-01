@@ -1,0 +1,12 @@
+---
+- name: Install Zsh
+  hosts: all
+  tasks:
+    - name: Install new shell
+      yum:
+        name: zsh
+        state: present
+      register: result
+  
+    - name: Display zsh shell installation
+      debug: var=result
