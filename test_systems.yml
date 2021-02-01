@@ -1,0 +1,8 @@
+---
+- name: Testing of New project with credentials and inventory
+  hosts: all
+  tasks:
+    - name: Check connectivity
+      ping:
+        
+      
