@@ -1,0 +1,10 @@
+tower:
+  hosts:
+    tower.lab.example.com:
+  vars:
+    template_name: A DO447 Template
+    copy_template_name: Exact copy of A DO447 Template
+    tower_fqdn: tower.lab.example.com
+    tower_user: admin
+    tower_password: redhat
+

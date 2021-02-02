@@ -1,0 +1,22 @@
+---
+- name: Use API to create copy of existing Template
+  hosts: tower.lab.example.com
+  gather_facts: false
+  tasks:
+    - name: make duplicate Copy of template
+      uri:
+        url: "https://{{ tower_fqdn }}/api/v2/job_templates/{{ template_name | urlencode }}/copy/"
+        validate_certs: no
+        method: POST
+        return_content: yes
+        force_basic_auth: yes
+        user: "{{ tower_user }}"
+        password: "{{ tower_password }}"
+        status_code: [201, 202]
+        body:
+          name: "{{ copy_template_name }}"
+        body_format: json
+      register: copy
+
+    - name: Display output
+      debug: var=copy.json
